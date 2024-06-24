@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+
+    <!--- basic page needs
+    ================================================== -->
+    <meta charset="utf-8">
+    <title>GILGAL - Volunteer</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- mobile specific metas
+    ================================================== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSS
+    ================================================== -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/main.css">
+
+    <!-- script
+    ================================================== -->
+    <script src="js/modernizr.js"></script>
+
+    <!-- favicons
+    ================================================== -->
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            text-align: center;
+            color: #333;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+            position: relative;
+        }
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 200px; /* Fixed height */
+            object-fit: cover; /* Maintain aspect ratio and cover container */
+            display: block;
+            border-radius: 8px;
+        }
+        .video-info {
+            text-align: center;
+            padding: 10px 0;
+        }
+        .video-title {
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .video-description {
+            font-size: 14px;
+            color: #555;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            padding-top: 50px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            position: relative;
+            width: 80%;
+            max-width: 800px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            text-align: center;
+            overflow: hidden;
+            max-height: 80vh; /* Maximum height of modal content */
+        }
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            color: #aaa;
+            cursor: pointer;
+        }
+        video {
+            width: 100%;
+            height: auto;
+            max-height: 60vh; /* Maximum height of video */
+            display: block;
+        }
+        .pagination {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .pagination button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 10px 20px;
+            margin: 0 5px;
+            border-radius: 5px;
+        }
+        .pagination button.active {
+            background-color: #45a049;
+        }
+        @media screen and (max-width: 768px) {
+            .gallery {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 10px;
+            }
+            .modal-content {
+                width: 90%;
+            }
+        }
+    </style>
+
+</head>
+
+<body id="top">
+
+    <!-- preloader
+    ================================================== -->
+    <div id="preloader">
+        <div id="loader" class="dots-jump">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+
+<!-- header
+    ================================================== -->
+    <header class="s-header">
+
+        <div class="header-logo">
+            <a class="site-logo" href="index.html">
+                <!-- <img src="images/logo.svg" alt="Homepage"> -->
+                <P class="img" style="color: white;">GILGAL PRAYER CENTER</P>
+            </a>
+        </div>
+
+        <nav class="header-nav-wrap">
+            <ul class="header-nav">
+                <li class="current"><a href="index.html" title="Home">Home</a></li>
+                <li><a href="about.html" title="About">About</a></li>
+                <li><a href="events.html" title="Services">Watch Preaching</a></li>
+                <li><a href="volunteer.html" title="Volunteer">Volunteer</a></li>
+                <li><a href="contact.html" title="Contact us">Contact</a></li>	
+            </ul>
+        </nav>
+
+        <a class="header-menu-toggle" href="#0"><span>Menu</span></a>
+
+    </header> <!-- end s-header -->
+
+
+    <!-- page header
+    ================================================== -->
+    <section class="page-header page-header--volunteer">
+
+        <div class="gradient-overlay"></div>
+        <div class="row page-header__content">
+            <div class="column">
+                <h1>Volunteer Activities at Our Church</h1>
+            </div>
+        </div>
+
+    </section> <!-- end pageheader -->
+
+
+    <!-- page content
+    ================================================== -->
+     <div class="container">
+        <h1>Volunteer Activities at Our Church</h1>
+        <div class="gallery">
+            <div class="gallery-item" onclick="openModal('videos/volunteer/volunteer.mp4')">
+                <img src="videos/volunteer/thumbnail/volunteer-1.jpeg" alt="Video Thumbnail 1">
+                <div class="video-info">
+                    <div class="video-title">Volunteer</div>
+                    <div class="video-description">Community Service</div>
+                </div>
+                
+            </div>
+            <div class="gallery-item" onclick="openModal('videos/volunteer/volunteer2.mp4')">
+                <img src="videos/volunteer/thumbnail/volunteer-2.jpeg" alt="Video Thumbnail 2">
+                <div class="video-info">
+                    <div class="video-title">Volunteering</div>
+                    <div class="video-description">Community Service</div>
+                </div>
+            </div>
+            <!-- Add more video thumbnails as needed -->
+        </div>
+    </div>
+
+    <!-- Video Modal -->
+    <div id="videoModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <video id="modalVideo" controls>
+                <source id="modalVideoSource" src="" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+
+
+    
+
+
+
+    <!-- Social
+    ================================================== -->
+    <section class="s-social">
+            
+        <div class="row social-content">
+            <div class="column">
+                <ul class="social-list">
+                    <li class="social-list__item">
+                        <a href="#0" title="">
+                            <span class="social-list__icon social-list__icon--facebook"></span>
+                            <span class="social-list__text">Facebook</span>
+                        </a>
+                    </li>
+                    <li class="social-list__item">
+                        <a href="#0" title="">
+                            <span class="social-list__icon social-list__icon--twitter"></span>
+                            <span class="social-list__text">Twitter</span>
+                        </a>
+                    </li>
+                    <li class="social-list__item">
+                        <a href="#0" title="">
+                            <span class="social-list__icon social-list__icon--instagram"></span>
+                            <span class="social-list__text">Instagram</span>
+                        </a>
+                    </li>
+                    <li class="social-list__item">
+                        <a href="#0" title="">
+                            <span class="social-list__icon social-list__icon--email"></span>
+                            <span class="social-list__text">Email</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div> <!-- end social-content -->
+
+    </section> <!-- end s-social -->
+
+
+   <!-- footer
+    ================================================== -->
+    <footer class="s-footer">
+
+        <div class="row footer-top">
+            <div class="column large-4 medium-5 tab-full">
+                <div class="footer-logo">
+                    <a class="site-footer-logo" href="index.html">
+                        <!-- <img src="images/logo.svg" alt="Homepage"> -->
+                        <p>GILGAL PRAYER CENTER</p>
+                    </a>
+                </div>  <!-- footer-logo -->
+                <p>
+                Laborum ad explicabo. Molestiae voluptates est. Quisquam labore tenetur 
+                et assumenda voluptatibus a beatae. Rerum odio ducimus reprehenderit 
+                sit animi laborum nostrum dolorum animi voluptates est voluptatibus a beatae. 
+                </p>
+            </div>
+            <div class="column large-half tab-full">
+                <div class="row">
+                    <div class="column large-7 medium-full">
+                        <h4 class="h6">Our Location</h4>
+                        <p>
+                        GOKA <br>
+                        BONO REGION <br>
+                        GHANA
+                        </p>
+        
+                        <p>
+                        <a href="https://goo.gl/maps/bc7C7eYtSmnNs6216" target="_blank" class="btn btn--footer">Get Direction</a>
+                        </p>
+                    </div>
+                    <div class="column large-5 medium-full">
+                        <h4 class="h6">Quick Links</h4>
+                        <ul class="footer-list">
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="about.html">About</a></li>
+                            <li><a href="volunteer.html">Volunteer</a></li>
+                            <li><a href="connect-group.html">Connect Groups</a></li>
+                            <li><a href="events.html">Upcoming Events</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- end footer-top -->
+
+        <div class="row footer-bottom">
+            <div class="column ss-copyright">
+                <span>© Copyright GILGAL PRAYER CENTER 2024</span> 
+                <span>Design by <a href="#">GODFREY KWAME TWENE</a></span>
+            </div>
+        </div> <!-- footer-bottom -->
+
+        <div class="ss-go-top">
+            <a class="smoothscroll" title="Back to Top" href="#top">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0l8 9h-6v15h-4v-15h-6z"/></svg>
+            </a>
+        </div> <!-- ss-go-top -->
+
+    </footer> <!-- end s-footer -->
+
+
+    <!-- Java Script
+    ================================================== -->
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/main.js"></script>
+
+    <script>
+        function openModal(videoSrc) {
+            var modal = document.getElementById('videoModal');
+            var video = document.getElementById('modalVideoSource');
+            video.src = videoSrc;
+            modal.style.display = 'flex';
+            document.getElementById('modalVideo').load();
+        }
+
+        function closeModal() {
+            var modal = document.getElementById('videoModal');
+            var video = document.getElementById('modalVideoSource');
+            video.src = '';
+            modal.style.display = 'none';
+        }
+
+        // Close the modal when clicking outside the modal content
+        window.onclick = function(event) {
+            var modal = document.getElementById('videoModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        };
+    </script>
+
+</body>
